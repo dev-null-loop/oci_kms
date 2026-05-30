@@ -1,47 +1,42 @@
-variable "compartment_id" {
-  description = "The OCID of compartment in which the EKMS private endpoint is to be created"
-  type        = string
-  nullable    = false
-}
-
-variable "subnet_id" {
-  description = "The OCID of subnet in which the EKMS private endpoint is to be created"
-  type        = string
-  nullable    = false
-}
-
 variable "ca_bundle" {
-  description = "CABundle to validate TLS certificate of the external key manager system in PEM format"
+  description = "(Required) CABundle to validate TLS certificate of the external key manager system in PEM format"
   type        = string
-  nullable    = false
 }
 
-variable "display_name" {
-  description = "Display name of the EKMS private endpoint resource being created"
+variable "compartment_id" {
+  description = "(Required) Compartment identifier."
   type        = string
-  nullable    = false
-}
-
-variable "external_key_manager_ip" {
-  description = "External private IP to connect to from this EKMS private endpoint"
-  type        = string
-  nullable    = false
-}
-
-variable "port" {
-  description = "The port of the external key manager system"
-  type        = string
-  nullable    = true
 }
 
 variable "defined_tags" {
-  description = "Defined tags for this resource. Each key is predefined and scoped to a namespace"
+  description = "(Optional) (Updatable) Usage of predefined tag keys. These predefined keys are scoped to namespaces. Example: `{\"foo-namespace.bar-key\": \"value\"}`"
   type        = map(string)
-  nullable    = true
+  default     = null
+}
+
+variable "display_name" {
+  description = "(Required) (Updatable) Display name of the EKMS private endpoint resource being created."
+  type        = string
+}
+
+variable "external_key_manager_ip" {
+  description = "(Required) External private IP to connect to from this EKMS private endpoint"
+  type        = string
 }
 
 variable "freeform_tags" {
-  description = "Free-form tags for this resource. Each tag is a simple key-value pair with no predefined name, type, or namespace"
+  description = "(Optional) (Updatable) Simple key-value pair that is applied without any predefined name, type, or scope. Exists for cross-compatibility only. Example: `{\"bar-key\": \"value\"}`"
   type        = map(string)
-  nullable    = true
+  default     = {}
+}
+
+variable "port" {
+  description = "(Optional) The port of the external key manager system"
+  type        = number
+  default     = null
+}
+
+variable "subnet_id" {
+  description = "(Required) The OCID of subnet in which the EKMS private endpoint is to be created"
+  type        = string
 }
